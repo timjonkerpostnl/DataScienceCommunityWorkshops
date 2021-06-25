@@ -1,5 +1,4 @@
 import tsp_general_functions
-from christofides import tsp
 import tsp_local_search
 import tsp_aco
 
@@ -7,7 +6,6 @@ NUM_CITIES = 10
 cities, G = tsp_general_functions.start_up(NUM_CITIES)
 
 
-path_christofides, length_christofides, time_christofides = tsp(cities)
 path_nearest_neighbour, length_nearest_neighbour, time_nearest_neighbour = tsp_local_search.greedy_nearest_neighbour(cities)
 path_insertion, length_insertion, time_insertion = tsp_local_search.greedy_insertion_heuristic(cities)
 path_grasp_nearest_neighbour, length_grasp_nearest_neighbour, time_grasp_nearest_neighbour = tsp_local_search.grasp_nearest_neighbour(cities, 200, 2.5)

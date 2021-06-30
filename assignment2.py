@@ -61,7 +61,26 @@ def local_search(cities: List[City], grasp_iterations=20, fraction_of_best=1.2):
 
     # vvvvvvv YOUR CODE HERE vvvvvvv
     # Hint: You might want to use the function tsp_general_functions.re_insert_path_segment(...)
-    path = path
+    for _ in range(50):
+        best_length = length
+        best_path = path.copy()
+        # You could also shorten the for loops
+        for i in range(len(path)):
+        # i = 0
+            for j in range(i+1, len(path)):
+            # j = i + 1 (The larger j the longer the path segment that you place at another position)
+                for insert_left_index in range(len(path) - (j - i + 1)):
+                # insert_left_index = 0 (If j=0 we place the segment in front)
+                    for reverse in [True, False]:
+                    # reverse = False
+                        new_path, new_length = tsp_general_functions.re_insert_path_segment(
+                            (i, j), insert_left_index, reverse, path, length)
+                        if new_length < best_length - 0.0001:
+                            best_length = new_length
+                            best_path = new_path
+        path = best_path
+        length = best_length
+
     total_distance = length
     # ^^^^^^ YOUR CODE HERE ^^^^^^^
 
